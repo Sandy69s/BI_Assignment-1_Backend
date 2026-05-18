@@ -2,11 +2,18 @@ const express = require("express");
 const app = express();
 
 const cors = require("cors");
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 
 const { initializeDatabase } = require("./db/db.connect");
 const Event = require("./models/event.models");
 
-app.use(cors());
 app.use(express.json());
 
 initializeDatabase();
